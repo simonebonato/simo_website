@@ -1,0 +1,114 @@
+{{- $padova := default "purple" .Page.Params.padova_color -}}
+{{- $stockholm := default "blue" .Page.Params.stockholm_color -}}
+{{- $saintLouis := default "green" .Page.Params.saint_louis_color -}}
+{{- $brugg := default "red" .Page.Params.brugg_color -}}
+{{- $venice := default "yellow" .Page.Params.venice_color -}}
+
+
+
+<div class="edu-map-wrapper" style="max-width: 720px; margin-top: 0.75rem;">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+    crossorigin="anonymous"
+  />
+  <div id="edu-map" class="edu-map" style="height: 400px; border-radius: 12px;" aria-label="Map of education and work locations"></div>
+
+  <script
+    src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+    (function () {
+      const cities = [
+        { name: "BSc Management Engineering (Padova, Italy)", lat: 45.4064, lon: 11.8768, color: "{{ $padova }}" },
+        { name: "MSc in Machine Learning (Stockholm, Sweden)", lat: 59.3293, lon: 18.0686, color: "{{ $stockholm }}" },
+        { name: "Where I live: Saint-Louis (France)", lat: 47.5884, lon: 7.56247, color: "{{ $saintLouis }}" },
+        { name: "Where I work: I4DS in Brugg (Switzerland)", lat: 47.48096, lon: 8.20869, color: "{{ $brugg }}" },
+        { name: "Where I am from: Marcon (Venice, Italy)", lat: 45.4371, lon: 12.33265, color: "{{ $venice }}" },
+      ];
+
+      const map = new maplibregl.Map({
+        container: "edu-map",
+        style: {
+          version: 8,
+          sources: {
+            osm: {
+              type: "raster",
+              tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+              tileSize: 256,
+              attribution: "&copy; OpenStreetMap contributors",
+            },
+          },
+          layers: [{ id: "osm", type: "raster", source: "osm" }],
+        },
+        center: [8.20869, 47.48096],
+        zoom: 5,
+        scrollZoom: true,
+        zoomSnap: 5,
+        zoomDelta: 20
+      });
+
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+
+      const tooltip = document.createElement("div");
+      tooltip.className = "edu-map-tooltip";
+      tooltip.style.cssText = "position:absolute;pointer-events:none;background:rgba(0,0,0,0.8);color:white;padding:6px 8px;border-radius:8px;font-size:12px;white-space:nowrap;display:none;z-index:10";
+      document.getElementById("edu-map").appendChild(tooltip);
+
+      function showTooltip(text, x, y) {
+        tooltip.textContent = text;
+        tooltip.style.left = (x + 10) + "px";
+        tooltip.style.top = (y + 10) + "px";
+        tooltip.style.display = "block";
+      }
+      function hideTooltip() {
+        tooltip.style.display = "none";
+      }
+
+      map.on("load", () => {
+        map.addSource("cities", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: cities.map(c => ({
+              type: "Feature",
+              properties: { name: c.name, color: c.color },
+              geometry: { type: "Point", coordinates: [c.lon, c.lat] },
+            })),
+          },
+        });
+
+        map.addLayer({
+          id: "city-circles",
+          type: "circle",
+          source: "cities",
+          paint: {
+            "circle-radius": 6,
+            "circle-color": ["get", "color"],
+            "circle-opacity": 0.5,
+            "circle-stroke-color": ["get", "color"],
+            "circle-stroke-width": 2,
+          },
+        });
+
+        map.on("mousemove", "city-circles", (e) => {
+          map.getCanvas().style.cursor = "pointer";
+          const f = e.features && e.features[0];
+          if (!f) return;
+          showTooltip(f.properties.name, e.point.x, e.point.y);
+        });
+
+        map.on("mouseleave", "city-circles", () => {
+          map.getCanvas().style.cursor = "";
+          hideTooltip();
+        });
+
+        const bounds = new maplibregl.LngLatBounds();
+        cities.forEach(c => bounds.extend([c.lon, c.lat]));
+        map.fitBounds(bounds, { padding: 80, maxZoom: 10, duration: 0 });
+      });
+    })();
+  </script>
+</div>

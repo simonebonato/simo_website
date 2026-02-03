@@ -2,14 +2,13 @@
 title: Simone Bonato
 type: docs
 toc: true
----
-<!-- 
-## Explore
 
-{{< cards >}}
-  {{< card link="docs" title="Docs" icon="book-open" >}}
-  {{< card link="about" title="About" icon="user" >}}
-{{< /cards >}} -->
+padova_color: "purple"
+stockholm_color: "blue"
+saint_louis_color: "green"
+brugg_color: "red"
+venice_color: "yellow"
+---
 
 <div style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
   <div style="min-width: 250px; max-width: 340px;">
@@ -18,8 +17,10 @@ toc: true
 
 ## About me 
 
-Where I am from:<em style="color: {{< venice_color >}}; font-weight: 600;"> Marcon </em>(Venice, Italy)<br>
-Where I live:<em style="color: {{< saint_louis_color >}}; font-weight: 600;"> Saint-Louis </em>(France)<br>
+Where I am from:<em style="color: {{< venice_color >}}; font-weight: 600;"> Marcon </em>(Venice, Italy)
+<br>
+Where I live:<em style="color: {{< saint_louis_color >}}; font-weight: 600;"> Saint-Louis </em>(France)
+<br>
 Where I work:<em style="color: {{< brugg_color >}}; font-weight: 600;"> Brugg </em>(Switzerland)
 
 ## Education

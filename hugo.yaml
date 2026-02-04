@@ -24,9 +24,6 @@ menu:
     - name: About
       pageRef: /about
       weight: 2
-    - name: Contact ↗
-      url: "https://github.com/simonebonato"
-      weight: 3
     - name: Search
       weight: 4
       params:
@@ -36,6 +33,11 @@ menu:
       url: "https://github.com/simonebonato"
       params:
         icon: github
+    - name: Linkedin
+      weight: 5
+      url: "https://www.linkedin.com/in/simone-bonato/"
+      params:
+        icon: linkedin
 
 
 params:

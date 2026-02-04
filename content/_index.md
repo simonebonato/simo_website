@@ -11,6 +11,14 @@ venice_color: "yellow"
 ---
 
 
+<!-- Introduction Section -->
+<div style="margin-bottom: 1rem; margin-top: 1rem">
+
+  Hi! I'm Simone Bonato, a passionate learner and engineer fascinated by machine learning, technology, and how they shape our world.<br>
+  With a strong international background, I enjoy tackling complex problems and collaborating across cultures.<br>
+  Welcome to my website!
+</div>
+
 <div style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
   <div style="min-width: 250px; max-width: 340px;">
 
@@ -18,8 +26,7 @@ venice_color: "yellow"
   <ul style="list-style: none; padding: 0; margin: 0;">
     <li style="margin-bottom: 1.5em;">
 
-### Contacts 
-Email: simonebonato99[at]gmail.com
+Email: <em style="color: #FFFDD0; font-weight: 350; font-size: 1.2em;">simonebonato99[at]gmail.com</em>
 
 ### Geographical location
 Where I live:<em style="color: {{< saint_louis_color >}}; font-weight: 600;"> Saint-Louis </em>(France)

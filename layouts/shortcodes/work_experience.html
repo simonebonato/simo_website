@@ -1,0 +1,40 @@
+{{- $colors := slice "#0074d9" "#7c3aed" -}}
+{{- $borderColors := slice "#4da6ff" "#a78bfa" -}}
+{{- $csv := resources.Get "my_linkedin_material/Positions.csv" -}}
+{{- $opts := dict "delimiter" "," -}}
+{{- $data := $csv | transform.Unmarshal $opts -}}
+{{- $rows := after 1 $data -}}{{/* skip header row */}}
+
+<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0;">
+{{- range $i, $row := $rows -}}
+  {{- $company := index $row 0 -}}
+  {{- $title := index $row 1 -}}
+  {{- $description := index $row 2 -}}
+  {{- $location := index $row 3 -}}
+  {{- $started := index $row 4 -}}
+  {{- $finished := index $row 5 -}}
+  {{- $colorIdx := mod $i 2 -}}
+  {{- $dotColor := index $colors $colorIdx -}}
+  {{- $borderColor := index $borderColors $colorIdx -}}
+  {{- $isLast := eq $i (sub (len $rows) 1) -}}
+  {{- $endLabel := cond (eq $finished "") "Present" $finished -}}
+
+<div style="display: flex; gap: 1.2rem; align-items: stretch;">
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 18px;">
+<div style="width: 14px; height: 14px; border-radius: 50%; background: {{ $dotColor }}; border: 2px solid {{ $borderColor }}; flex-shrink: 0; margin-top: 6px;"></div>
+{{- if not $isLast }}
+<div style="width: 2px; flex: 1; background: linear-gradient(to bottom, {{ $dotColor }}, {{ $dotColor }}44);"></div>
+{{- end }}
+</div>
+<div style="padding-bottom: {{ cond $isLast "0.5rem" "1.8rem" }};">
+<div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; margin-bottom: 0.2rem;">{{ $started }} &mdash; {{ $endLabel }}</div>
+<div style="font-weight: 700; font-size: 1.15em;">{{ $title }}</div>
+<div style="opacity: 0.85; font-style: italic;">{{ $company }} &mdash; {{ $location }}</div>
+{{- if $description }}
+<div style="margin-top: 0.4rem; line-height: 1.6; font-size: 0.95em;">{{ $description | markdownify }}</div>
+{{- end }}
+</div>
+</div>
+
+{{- end }}
+</div>

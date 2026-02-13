@@ -39,13 +39,8 @@ Where I am from:<em style="color: {{< venice_color >}}; font-weight: 600;"> Marc
 
 ## Education
 
-<strong>BSc in Management Engineering</strong><br />
-<em style="color: {{< padova_color >}}; font-weight: 600;">University of Padova</em> (Padova, Italy)
+{{< education >}}
 
-</li>
-<li>
-<strong>MSc in Machine Learning</strong><br />
-<em style="color: {{< stockholm_color >}}; font-weight: 600;">KTH</em> (Stockholm, Sweden)
 </li>
 </ul>
 
@@ -61,7 +56,7 @@ Where I am from:<em style="color: {{< venice_color >}}; font-weight: 600;"> Marc
 
 ## My work experience
 
-Currently lasdkufgasdiugfauvx asdjf; lakdsjf
+{{< work_experience >}}
 
 ### Some projects
 

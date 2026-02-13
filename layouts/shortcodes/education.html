@@ -1,0 +1,43 @@
+{{- $colors := slice "#7c3aed" "#0074d9" -}}
+{{- $borderColors := slice "#a78bfa" "#4da6ff" -}}
+{{- $csv := resources.Get "my_linkedin_material/Education.csv" -}}
+{{- $opts := dict "delimiter" "," -}}
+{{- $data := $csv | transform.Unmarshal $opts -}}
+{{- $rows := after 1 $data -}}{{/* skip header row */}}
+
+<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0;">
+{{- range $i, $row := $rows -}}
+  {{- $school := index $row 0 -}}
+  {{- $started := index $row 1 -}}
+  {{- $ended := index $row 2 -}}
+  {{- $notes := index $row 3 -}}
+  {{- $degree := index $row 4 -}}
+  {{- $activities := index $row 5 -}}
+  {{- $colorIdx := mod $i 2 -}}
+  {{- $dotColor := index $colors $colorIdx -}}
+  {{- $borderColor := index $borderColors $colorIdx -}}
+  {{- $isLast := eq $i (sub (len $rows) 1) -}}
+  {{- $endLabel := cond (eq $ended "") "Present" $ended -}}
+
+<div style="display: flex; gap: 1.2rem; align-items: stretch;">
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 18px;">
+<div style="width: 14px; height: 14px; border-radius: 50%; background: {{ $dotColor }}; border: 2px solid {{ $borderColor }}; flex-shrink: 0; margin-top: 6px;"></div>
+{{- if not $isLast }}
+<div style="width: 2px; flex: 1; background: linear-gradient(to bottom, {{ $dotColor }}, {{ $dotColor }}44);"></div>
+{{- end }}
+</div>
+<div style="padding-bottom: {{ cond $isLast "0.5rem" "1.8rem" }};">
+<div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; margin-bottom: 0.2rem;">{{ $started }} &mdash; {{ $endLabel }}</div>
+<div style="font-weight: 700; font-size: 1.15em;">{{ $degree }}</div>
+<div style="opacity: 0.85; font-style: italic;">{{ $school }}</div>
+{{- if $notes }}
+<div style="margin-top: 0.4rem; line-height: 1.6; font-size: 0.95em;">{{ $notes | markdownify }}</div>
+{{- end }}
+{{- if $activities }}
+<div style="margin-top: 0.3rem; font-size: 0.9em; opacity: 0.7;">{{ $activities }}</div>
+{{- end }}
+</div>
+</div>
+
+{{- end }}
+</div>

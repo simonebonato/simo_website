@@ -46,7 +46,7 @@ Where I am from:<em style="color: {{< venice_color >}}; font-weight: 600;"> Marc
 
 </div>
   <div style="flex: 0 0 auto; min-width: 150px; max-width: 200px; display: flex; justify-content: center; align-items: flex-start;">
-    <img src="/simo_website/images/Profile_pic.jpeg" alt="Profile picture of Simone Bonato" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.07);" />
+    <img src="{{< imgroot >}}images/Profile_pic.jpeg" alt="Profile picture of Simone Bonato" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.07);" />
   </div>
 </div>
 <div style="flex: 1 1 450px; min-width: 250px; max-width: 600px;">
@@ -73,13 +73,13 @@ My number one hobby is playing guitar. I started during COVID times just to lear
 <a href="https://www.youtube.com/@caligulashorse" style="text-decoration: none; color: inherit;">
 <div style="flex: 1 1 240px; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.15); border-radius: 12px; padding: 1rem; gap: 0.8rem;">
   <span style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">Favorite Band</span>
-    <img src="/simo_website/images/ch.jpg" alt="Caligula's Horse" style="width: 100%; max-width: 220px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);" />
+    <img src="{{< imgroot >}}images/ch.jpg" alt="Caligula's Horse" style="width: 100%; max-width: 220px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);" />
   <span style="font-weight: 600; font-size: 1.1em;">Caligula's Horse</span>
 </div>
 </a>
 <div style="flex: 1 1 240px; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.15); border-radius: 12px; padding: 1rem; gap: 0.8rem;">
 <span style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">Favorite Album</span>
-<img src="/simo_website/images/rise_radiant.jpeg" alt="Rise Radiant album cover" style="width: 140px; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);" />
+<img src="{{< imgroot >}}images/rise_radiant.jpeg" alt="Rise Radiant album cover" style="width: 140px; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);" />
 <span style="font-weight: 600; font-size: 1.1em;">Rise Radiant</span>
 </div>
 <div style="flex: 1 1 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.15); border-radius: 12px; padding: 1.5rem 1rem; gap: 0.6rem;">
@@ -89,7 +89,7 @@ My number one hobby is playing guitar. I started during COVID times just to lear
 </div>
 <div style="flex: 1 1 240px; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.15); border-radius: 12px; padding: 1rem; gap: 0.8rem;">
 <span style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">Me Playing</span>
-<img src="/simo_website/images/me_guitar.jpeg" alt="Simone playing guitar" style="width: 100%; max-width: 220px; height: 160px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);" />
+<img src="{{< imgroot >}}images/me_guitar.jpeg" alt="Simone playing guitar" style="width: 100%; max-width: 220px; height: 160px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);" />
 </div>
 </div>
 </div>
